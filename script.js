@@ -15,7 +15,7 @@ const json = [
             {
                 id: "12",
                 key: "key obj",
-                value: "value obj"
+                value: {test: "XXXX"}
             }
     },
     {id: "6", kay: "some key6", value: "some value6"},
@@ -28,6 +28,7 @@ const html = (ul, data, id) => {
     let node = document.createTextNode(data)
 
     if(id){
+        // console.log(data)
         data = createChild(data)
 
     }
@@ -41,12 +42,18 @@ const html = (ul, data, id) => {
 
 const eachRow = (o)=> {
     const [id, key, value] = Object.entries(o)
+    html(ul, key[1])
     if(typeof value[1] === "object"){
+
+
+
         const [id2, key2, value2] = Object.entries(value[1])
-        return html(ul, value2[1], id2[1])
+        // const [id2, key2, value2] = Object.entries(value[1])
+        console.log(value2)
+        return html(ul, key2[1], id2[1])
     }
 
-    html(ul, value[1])
+    // html(ul, key[1])
 
     return value[1]
 }
