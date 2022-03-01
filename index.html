@@ -6,24 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tree</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
 </head>
 <body>
 
-    <div id="tree">
 
+
+
+
+    <div id="mainBody">
+        <div id="leftSide">
+            <button type="button" data-open-left>Link</button>
+            <button type="button" data-open-right>Recht</button>
+
+        </div>
+
+        <div id="rightSide">
+
+            <div>
+
+                <div class="left" data-side-left>
+                    <div id="tree"></div>
+                </div>
+
+                <div class="right" data-side-right>
+                    <div id="someData"></div>
+                </div>
+
+            </div>
+
+            <div id="conves"></div>
+
+        </div>
     </div>
-    <!-- <ul>
-        <li>test</li>
-        <li>
-            test 2
-        </li>
-        <li>
-            <ul>
-                <li>test5</li>
-            </ul>
-        </li>
-    </ul> -->
-    <script src="script.js" defer></script>
 
+    <script>
+
+        const btnLeft = document.querySelector("[data-open-left]")
+        const btnRight = document.querySelector("[data-open-right]")
+        const sideLeft = document.querySelector("[data-side-left]")
+        const sideright = document.querySelector("[data-side-right]")
+
+
+        btnLeft.onclick = function(){
+            sideLeft.classList.toggle("opened")
+        }
+
+        btnRight.onclick = function(){
+            sideright.classList.toggle("opened")
+        }
+
+
+    </script>
 </body>
 </html>

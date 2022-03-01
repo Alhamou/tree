@@ -22,60 +22,56 @@ const json = [
     {id: "7", kay: "some key7", value: "some value7"},
 ]
 
-const html = (ul, data, id) => {
-
-    const li = document.createElement("li")
-    let node = document.createTextNode(data)
-
-    if(id){
-        // console.log(data)
-        data = createChild(data)
-
-    }
-
-    node = id ? data : document.createTextNode(data)
-    li.appendChild(node);
-    ul.appendChild(li)
-
-    return data
-}
-
-const eachRow = (o)=> {
-    const [id, key, value] = Object.entries(o)
-    html(ul, key[1])
-    if(typeof value[1] === "object"){
 
 
-
-        const [id2, key2, value2] = Object.entries(value[1])
-        // const [id2, key2, value2] = Object.entries(value[1])
-        console.log(value2)
-        return html(ul, key2[1], id2[1])
-    }
-
-    // html(ul, key[1])
-
-    return value[1]
-}
-
-
-const createChild = (o) => {
-
-    const ul = document.createElement("ul")
+function to_li(obj, name) {
     const li = document.createElement("li")
 
-    const node = document.createTextNode(o)
+    if (typeof(name) != "undefined") {
 
-    li.appendChild(node);
-    ul.appendChild(li)
+        const strong = document.createElement("strong")
+        strong.setAttribute('class','caret');
 
-    return ul
+        strong.appendChild(document.createTextNode(name + ": "))
+        li.appendChild(strong)
+    }
+
+    if (typeof(obj) != "object"){
+
+        li.appendChild(document.createTextNode(obj))
+
+    } else {
+
+        const ul = document.createElement ("ul")
+
+        for (let prop in obj){
+
+            ul.appendChild(to_li(obj[prop],prop))
+        }
+
+        li.appendChild(ul)
+    }
+    return li
 }
 
-json.forEach(data=>{
-    eachRow(data)
-})
+const res = to_li(json)
 
-// uls.forEach(el => {
-    selectorTree.appendChild(ul)
-// })
+ul.appendChild(res)
+selectorTree.appendChild(ul)
+
+
+
+
+
+
+
+
+var toggler = document.getElementsByClassName("caret");
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("caret-down");
+  });
+}
