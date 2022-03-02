@@ -33,6 +33,11 @@ function to_li(obj, name) {
         const strong = document.createElement("strong")
         strong.setAttribute('class','caret');
 
+
+        if(!isNaN(Number(name))){
+            name = +name +1
+        }
+
         strong.appendChild(document.createTextNode(name + ": "))
         li.appendChild(strong)
     }
@@ -44,7 +49,7 @@ function to_li(obj, name) {
         if(name === "id"){
             btn.setAttribute('data-'+name, obj);
         }
-        console.log(name, obj)
+        // console.log(name, obj)
 
     } else {
 

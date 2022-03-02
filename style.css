@@ -115,3 +115,7 @@ div#rightSide .right.opened{
     padding: 0 5px;
     cursor: pointer;
 }
+
+#proList > li > ul > li > strong{
+    color: #2bb742;
+}
