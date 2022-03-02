@@ -4,22 +4,22 @@ ul.setAttribute('id','proList');
 // const uls = [ul]
 
 const json = [
-    {id: "1", kay: "some key1", value: "some value1"},
-    {id: "2", kay: "some key2", value: "some value2"},
-    {id: "3", kay: "some key3", value: "some value3"},
-    {id: "4", kay: "some key4", value: "some value4"},
+    {id: "8654", kay: "some key1", value: "some value1"},
+    {id: "5674", kay: "some key2", value: "some value2"},
+    {id: "5673", kay: "some key3", value: "some value3"},
+    {id: "2436", kay: "some key4", value: "some value4"},
     {
-        id: "5",
+        id: "4567",
         kay: "some key5",
         value:
             {
-                id: "12",
+                id: "5437",
                 key: "key obj",
                 value: {test: "XXXX"}
             }
     },
-    {id: "6", kay: "some key6", value: "some value6"},
-    {id: "7", kay: "some key7", value: "some value7"},
+    {id: "8654", kay: "some key6", value: "some value6"},
+    {id: "5643", kay: "some key7", value: "some value7"},
 ]
 
 
@@ -33,21 +33,22 @@ function to_li(obj, name) {
         const strong = document.createElement("strong")
         strong.setAttribute('class','caret');
 
-        // if(isNaN(Number(name))){
-        //     strong.appendChild(document.createTextNode(name + ": "))
-        //     li.appendChild(strong)
-        // }
-
         strong.appendChild(document.createTextNode(name + ": "))
         li.appendChild(strong)
     }
 
     if (typeof obj !== "object"){
-        li.appendChild(document.createTextNode(obj))
+        const btn = document.createElement("butten")
+        btn.innerHTML = obj;
+        li.appendChild(btn)
+        if(name === "id"){
+            btn.setAttribute('data-'+name, obj);
+        }
+        console.log(name, obj)
 
     } else {
 
-        const ul = document.createElement ("ul")
+        const ul = document.createElement("ul")
 
         for (let prop in obj){
 
@@ -67,16 +68,11 @@ selectorTree.appendChild(ul)
 
 
 
+const buttuns = document.querySelectorAll("[data-id]")
 
-
-
-
-// var toggler = document.getElementsByClassName("caret");
-// var i;
-
-// for (i = 0; i < toggler.length; i++) {
-//   toggler[i].addEventListener("click", function() {
-//     this.parentElement.querySelector(".nested").classList.toggle("active");
-//     this.classList.toggle("caret-down");
-//   });
-// }
+buttuns.forEach(el=>{
+    el.addEventListener("click", function(e){
+        const {id} = e.target.dataset
+        console.log(id)
+    })
+})
