@@ -74,7 +74,8 @@ div#rightSide .right,
 div#rightSide .left{
     background-color: var(--sidesColor);
     height: 100vh;
-    width: var(--sidWidth);
+    min-width: var(--sidWidth);
+    width: auto;
     position: absolute;
     overflow: auto;
     transition: 0.2s;
@@ -106,7 +107,7 @@ div#rightSide .right.opened{
     border: 0;
 }
 #proList > li ul{
-    padding: 0 20px;
+    padding: 0 0 0 20px;
 }
 #proList ul{
     border-left: 1px solid #d5d5d5;
