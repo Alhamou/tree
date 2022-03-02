@@ -24,20 +24,25 @@ const json = [
 
 
 
+
 function to_li(obj, name) {
     const li = document.createElement("li")
 
-    if (typeof(name) != "undefined") {
+    if (typeof name !== "undefined") {
 
         const strong = document.createElement("strong")
         strong.setAttribute('class','caret');
+
+        // if(isNaN(Number(name))){
+        //     strong.appendChild(document.createTextNode(name + ": "))
+        //     li.appendChild(strong)
+        // }
 
         strong.appendChild(document.createTextNode(name + ": "))
         li.appendChild(strong)
     }
 
-    if (typeof(obj) != "object"){
-
+    if (typeof obj !== "object"){
         li.appendChild(document.createTextNode(obj))
 
     } else {
@@ -66,12 +71,12 @@ selectorTree.appendChild(ul)
 
 
 
-var toggler = document.getElementsByClassName("caret");
-var i;
+// var toggler = document.getElementsByClassName("caret");
+// var i;
 
-for (i = 0; i < toggler.length; i++) {
-  toggler[i].addEventListener("click", function() {
-    this.parentElement.querySelector(".nested").classList.toggle("active");
-    this.classList.toggle("caret-down");
-  });
-}
+// for (i = 0; i < toggler.length; i++) {
+//   toggler[i].addEventListener("click", function() {
+//     this.parentElement.querySelector(".nested").classList.toggle("active");
+//     this.classList.toggle("caret-down");
+//   });
+// }
