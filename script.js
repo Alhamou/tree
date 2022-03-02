@@ -1,7 +1,6 @@
 const selectorTree = document.getElementById("tree")
 const ul = document.createElement("ul")
 ul.setAttribute('id','proList');
-// const uls = [ul]
 
 const json = [
     {id: "8654", kay: "some key1", value: "some value1"},
@@ -15,7 +14,7 @@ const json = [
             {
                 id: "5437",
                 key: "key obj",
-                value: {test: "XXXX"}
+                value: {system: "WIN10"}
             }
     },
     {id: "8654", kay: "some key6", value: "some value6"},
@@ -45,11 +44,8 @@ function to_li(obj, name) {
     if (typeof obj !== "object"){
         const btn = document.createElement("butten")
         btn.innerHTML = obj;
+        btn.setAttribute('data-'+name, obj);
         li.appendChild(btn)
-        if(name === "id"){
-            btn.setAttribute('data-'+name, obj);
-        }
-        // console.log(name, obj)
 
     } else {
 
