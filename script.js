@@ -301,14 +301,12 @@ const buttuns = document.querySelectorAll("[data-id]")
 buttuns.forEach(el=>{
     el.addEventListener("click", function(e){
         const {id} = e.target.dataset
-        console.log(id)
     })
 })
 
 
 
 document.addEventListener("click", function(e){
-    console.log()
     if(e.target.classList.contains("trees")){
       e.target.classList.toggle("closed")
     }
