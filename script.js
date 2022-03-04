@@ -2,6 +2,36 @@ const selectorTree = document.getElementById("tree")
 const ul = document.createElement("ul")
 ul.setAttribute('id','proList');
 
+// const json = [
+//   {
+//     id: "1", title: "html", value: [
+//       {
+//         title: "html 1",
+//         id: "234523",
+//         name: "html 1",
+//       },
+//       {
+//         title: "html 5",
+//         id: "234523",
+//         name: "html 5",
+//       }
+//     ]
+//   },
+//   {
+//     id: "2", title: "css", value: [
+//       {
+//         title: "css 1",
+//         id: "56457",
+//         name: "css 1",
+//       },
+//       {
+//         title: "css 3",
+//         id: "234523",
+//         name: "css 3",
+//       }
+//     ]
+//   }
+// ]
 const json = [
     {id: "8654", kay: "some key1", value: "some value1"},
     {id: "5674", kay: "some key2", value: "some value2"},
@@ -247,20 +277,25 @@ const json = [
 
 
 function to_li(obj, name) {
-    const li = document.createElement("li")
+    let li = document.createElement("li")
+
+
+
 
     if (typeof name !== "undefined") {
+
 
         const strong = document.createElement("strong")
         strong.setAttribute('class','caret');
 
-
         if(!isNaN(Number(name))){
             name = +name +1
+        } else {
+          strong.appendChild(document.createTextNode(name + ": "))
+          li.appendChild(strong)
         }
 
-        strong.appendChild(document.createTextNode(name + ": "))
-        li.appendChild(strong)
+
     }
 
     if (typeof obj !== "object"){
@@ -274,17 +309,33 @@ function to_li(obj, name) {
         const ul = document.createElement("ul")
         ul.setAttribute('class','trees closed');
 
+
+        if (obj.length) {
+          const title = obj.map(e=> e.title)
+        }
+
+
         for (let prop in obj){
 
+            if(prop === "title"){
+              ul.setAttribute('data-title', obj[prop]);
+            }
             if(prop === "0"){
               ul.classList.remove("closed")
             }
 
             ul.appendChild(to_li(obj[prop],prop))
+
         }
 
+
         li.appendChild(ul)
+
+
     }
+
+
+
     return li
 }
 
@@ -308,6 +359,12 @@ buttuns.forEach(el=>{
 
 document.addEventListener("click", function(e){
     if(e.target.classList.contains("trees")){
+      Array.from(e.target.children).forEach( function(c){
+        const trees = c.querySelectorAll(".trees")
+        trees.forEach(function(t){
+          t.classList.add("closed")
+        })
+      })
       e.target.classList.toggle("closed")
     }
 })

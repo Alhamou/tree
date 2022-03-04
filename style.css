@@ -32,6 +32,16 @@ ul, #proList {
     font-size: 10px;
     color: #ff4374;
 }
+.trees.closed::after {
+    content:  "{...} " attr(data-title);
+    display: inline-block;
+    margin-right: 6px;
+    font-size: 14px;
+    color: #ff4374;
+    cursor: pointer;
+    transition: .2s;
+}
+
 .trees::before {
     content: "\25B6";
     display: inline-block;
@@ -92,7 +102,7 @@ div#rightSide .left{
 }
 
 div#rightSide .left{
-    left: -500px;
+    /* left: -500px; */
 }
 div#rightSide .right{
     right: -500px;
