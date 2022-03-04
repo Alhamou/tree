@@ -21,17 +21,26 @@ ul, #proList {
 }
 
 .caret {
-    cursor: pointer;
+    /* cursor: pointer; */
     user-select: none;
 }
 
 .caret::before {
-    content: "\25B6";
-    color: black;
+    content: "-";
     display: inline-block;
     margin-right: 6px;
     font-size: 10px;
     color: #ff4374;
+}
+.trees::before {
+    content: "\25B6";
+    display: inline-block;
+    margin-right: 6px;
+    font-size: 10px;
+    color: #ff4374;
+    cursor: pointer;
+    transform: rotate(90deg);
+
 }
 
 div#mainBody{
@@ -82,7 +91,7 @@ div#rightSide .left{
 }
 
 div#rightSide .left{
-    left: -500px;
+    /* left: -500px; */
 }
 div#rightSide .right{
     right: -500px;
@@ -97,7 +106,14 @@ div#rightSide .right.opened{
 }
 
 
-#leftSide button{
+
+#proList > li ul{
+    padding: 0 0 0 20px;
+}
+#proList ul{
+    border-left: 1px solid #d5d5d5;
+}
+#leftSide > button{
     width: 90%;
     padding:  0px;
     margin: 5px auto;
@@ -106,20 +122,25 @@ div#rightSide .right.opened{
     background: #ff4374;
     border: 0;
 }
-#proList > li ul{
-    padding: 0 0 0 20px;
-}
-#proList ul{
-    border-left: 1px solid #d5d5d5;
-}
-#proList butten{
+
+#proList button{
     background: #fcd8e1;
     font-size: 13px;
     border-radius: 5px;
-    padding: 0 5px;
+    padding: 2px;
     cursor: pointer;
+    border: 0;
 }
 
+#proList ul.trees > li{
+    padding-left: 10px;
+}
 #proList > li > ul > li > strong{
     color: #2bb742;
+}
+#proList .trees.closed > li{
+    display: none;
+}
+#proList .trees.closed::before{
+    transform: rotate(0deg);
 }

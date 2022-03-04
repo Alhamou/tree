@@ -264,7 +264,7 @@ function to_li(obj, name) {
     }
 
     if (typeof obj !== "object"){
-        const btn = document.createElement("butten")
+        const btn = document.createElement("button")
         btn.innerHTML = obj;
         btn.setAttribute('data-'+name, obj);
         li.appendChild(btn)
@@ -272,8 +272,13 @@ function to_li(obj, name) {
     } else {
 
         const ul = document.createElement("ul")
+        ul.setAttribute('class','trees closed');
 
         for (let prop in obj){
+
+            if(prop === "0"){
+              ul.classList.remove("closed")
+            }
 
             ul.appendChild(to_li(obj[prop],prop))
         }
@@ -299,3 +304,26 @@ buttuns.forEach(el=>{
         console.log(id)
     })
 })
+
+
+
+document.addEventListener("click", function(e){
+    console.log()
+    if(e.target.classList.contains("trees")){
+      e.target.classList.toggle("closed")
+    }
+})
+
+const btnLeft = document.querySelector("[data-open-left]")
+const btnRight = document.querySelector("[data-open-right]")
+const sideLeft = document.querySelector("[data-side-left]")
+const sideright = document.querySelector("[data-side-right]")
+
+
+btnLeft.onclick = function(){
+    sideLeft.classList.toggle("opened")
+}
+
+btnRight.onclick = function(){
+    sideright.classList.toggle("opened")
+}
